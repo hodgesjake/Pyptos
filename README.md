@@ -1,2 +1,2 @@
-# Pyptos
-Solves ciphers.
+# pyptos
+Solves ciphers and breaks codes.
