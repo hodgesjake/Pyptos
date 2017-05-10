@@ -6,3 +6,12 @@ Have 2 implemented ciphers
 
 Notes:
 
+What I want this project to do:
+
+Take some code or cipher and determine what type of code or cipher it is and break it.
+
+What do all classical ciphers have in common?
+
+Encoded Message
+Decoded Message
+Algorithm to Solve

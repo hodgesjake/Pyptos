@@ -3,54 +3,63 @@ Encrypts and Decrypts Atbash Ciphers
 
 Jake Hodges
 """
-from classicciphers.classiccipher import ClassicCipher as CC
+from classicalciphers.classicalcipher import ClassicalCipher
 
-#TODO: Be able to use different keys
-class AtbashCipher:
+class AtbashCipher(ClassicalCipher):
+    def __init__(self, encrypted_msg=None, decrypted_msg=None, key=None):
 
-    def __init__(self, e_msg=None, d_msg=None):
-        self.key = "ZYXWVUTSRQPONMLKJIHGFEDCBA"
-        self.e_msg = e_msg
-        self.d_msg = d_msg
+        if key==None:
+            self.key="ZYXWVUTSRQPONMLKJIHGFEDCBA"
+        else:
+            self.key=key
+        super().__init__(encrypted_msg, decrypted_msg)
 
     def __str__(self):
-        return "Atbash:\nENCIPHERED: " + self.e_msg+ "\nDECIPHERED: " + self.d_msg
+        return "ENCRYPTED: " + self.encrypted_msg + "\nDECRYPTED: " + self.decrypted_msg
 
-    def encipher(self):
-        e=""
-        for char in self.d_msg:
-            if char.isalpha():
-                indx=CC().alpha_to_index(char)
-                new_char=self.key[indx]
-            else:
-                new_char = char
-            e+=new_char
-        self.e_msg=e
+    def decrypt(self):
+        rev_key = self._reverse_key()
+        d_msg = ""
+        for char in self.encrypted_msg:
+            indx = self.key.find(char)
+            d_msg += rev_key[indx]
+        self.decrypted_msg = d_msg
 
-    def decipher(self):
-        d = ""
-        for char in self.e_msg:
-            if char.isalpha():
-                indx = CC().alpha_to_index(char)
-                new_char = self.key[indx]
-            else:
-                new_char = char
-            d += new_char
-        self.d_msg = d
+    def encrypt(self):
+        rev_key = self._reverse_key()
+        e_msg = ""
+        for char in self.decrypted_msg:
+            indx = self.key.find(char)
+            e_msg += rev_key[indx]
+        self.encrypted_msg = e_msg
 
-def _main():
-
-    e = "I am jake."
-    atbash_e = AtbashCipher(None, e)
-    atbash_e.encipher()
-    print(atbash_e)
-
-    d = "r zn qzpv....."
-    atbash_d=AtbashCipher(d,None)
-    atbash_d.decipher()
-    print(atbash_d)
+    def _reverse_key(self):
+        reverse_key=""
+        for i in range(len(self.key)-1, -1, -1):
+            reverse_key += self.key[i]
+        return reverse_key
 
 
+abc = AtbashCipher("ZYX")
+abc.decrypt()
+print(abc)
+print()
 
+speckey = AtbashCipher("987", None, "123456789")
+speckey.decrypt()
+print(speckey)
+print()
 
-_main()
+encr = AtbashCipher(None, "ABC")
+encr.encrypt()
+print(encr)
+print()
+
+speckey = AtbashCipher(None, "123", "987654321")
+speckey.encrypt()
+print(speckey)
+print()
+
+weirdkey = AtbashCipher("{4le07y7jqwec8v76", None, "qwertyuiop{}asdfghjkl;'zxcvbnm,.,/789456123")
+weirdkey.decrypt()
+print(weirdkey)
