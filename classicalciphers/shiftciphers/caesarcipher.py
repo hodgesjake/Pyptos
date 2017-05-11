@@ -1,16 +1,24 @@
 """
+Standard Shift Cipher
+
 Jake Hodges
 """
 
 from classicalciphers.classicalcipher import ClassicalCipher
 
-class ShiftCipher(ClassicalCipher):
+#TODO: Capitalization and punctuation
+class CaesarCipher(ClassicalCipher):
     def __init__(self, encrypted_msg=None, decrypted_msg=None, alpha=None, shift=0):
         self.shift = shift
         super().__init__(encrypted_msg, decrypted_msg, alpha)
 
     def encrypt(self):
-        pass
+        e_msg=""
+        shift_alpha=self._shift_alpha()
+        for char in self.decrypted_msg:
+            indx = self.alpha.find(char)
+            e_msg+=shift_alpha[indx]
+        self.encrypted_msg=e_msg
 
     def decrypt(self):
         d_msg=""
@@ -26,8 +34,3 @@ class ShiftCipher(ClassicalCipher):
         right = self.alpha[self.shift:len(self.alpha)]
         shift_alpha = right+left
         return shift_alpha
-
-###TEST###
-shift = ShiftCipher("NOPQRSTUVWXYZABCDEFGHIJKLM", None, None, 13)
-shift.decrypt()
-print(shift)
