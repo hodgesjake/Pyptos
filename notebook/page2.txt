@@ -1,0 +1,9 @@
+May 11, 2017
+
+Goal Today:
+Figure out how to implement decrypt() in affine cipher
+
+Notes:
+
+Used code written by someone else to find multiplicative inverse
+in order to decrypt affine ciphers.

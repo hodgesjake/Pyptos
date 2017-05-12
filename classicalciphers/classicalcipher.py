@@ -14,7 +14,13 @@ class ClassicalCipher(object):
             self.alpha = alpha
 
     def __str__(self):
-        return "ENCRYPTED: " + self.encrypted_msg + "\nDECRYPTED: " + self.decrypted_msg
+        if self.encrypted_msg==None:
+            return "ENCRYPTED: not encrypted" + "\nDECRYPTED: " + self.decrypted_msg
+        elif self.decrypted_msg==None:
+            return "ENCRYPTED: " + self.encrypted_msg + "\nDECRYPTED: not decrypted"
+
+        else:
+            return "ENCRYPTED: " + self.encrypted_msg + "\nDECRYPTED: " + self.decrypted_msg
 
     def encrypt(self):
         raise NotImplementedError()
