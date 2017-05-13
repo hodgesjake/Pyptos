@@ -7,3 +7,5 @@ Notes:
 
 Used code written by someone else to find multiplicative inverse
 in order to decrypt affine ciphers.
+
+Started rail-fence cipher
