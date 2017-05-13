@@ -5,8 +5,6 @@ Jake Hodges
 """
 from classicalciphers.classicalcipher import ClassicalCipher
 
-#TODO: Capitalization and Punctuation
-
 class AtbashCipher(ClassicalCipher):
     def __init__(self, encrypted_msg=None, decrypted_msg=None, alpha=None):
         super().__init__(encrypted_msg, decrypted_msg, alpha)
@@ -32,8 +30,3 @@ class AtbashCipher(ClassicalCipher):
         for i in range(len(self.alpha)-1, -1, -1):
             reverse_alpha += self.alpha[i]
         return reverse_alpha
-
-###TEST###
-atb = AtbashCipher("CUB")
-atb.decrypt()
-print(atb)

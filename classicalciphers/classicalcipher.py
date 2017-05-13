@@ -2,7 +2,6 @@
 Jake Hodges
 """
 
-
 class ClassicalCipher(object):
 
     def __init__(self, encrypted_msg=None, decrypted_msg=None, alpha=None):

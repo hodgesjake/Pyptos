@@ -1,0 +1,7 @@
+May 12, 2017
+
+Goal today:
+Get something done with the rail-fence cipher
+
+Notes:
+Struggling on how to implement rail-fence cipher.
