@@ -1,0 +1,4 @@
+May 13, 2017
+
+Switching to Bacon cipher because for some reason the rail-fence
+cipher is harder than expected.
