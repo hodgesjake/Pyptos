@@ -16,8 +16,7 @@ class RailFence(ClassicalCipher):
 
 
 def main():
-
-text
+    pass
 
 
 
