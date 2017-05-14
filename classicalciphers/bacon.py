@@ -19,13 +19,21 @@ class BaconCipherV2(ClassicalCipher):
         char_dict=self._create_dict()
         for char in self.decrypted_msg:
             e_msg+=char_dict[char]
-
         self.encrypted_msg=e_msg
 
-
-
     def decrypt(self):
-        pass
+        d_msg=""
+        #char_dict=self._create_dict()
+        i=0
+        indx=0
+        while i < len(self.encrypted_msg):
+            val=""
+            for indx in range(self.key_length):
+                val += self.encrypted_msg[indx+i]
+            i+=self.key_length
+            bin_to_int = int(val,2)
+            d_msg+=self.alpha[int(bin_to_int)]
+        self.decrypted_msg=d_msg
 
     def _create_dict(self):
         bc_dict={}
@@ -60,8 +68,11 @@ class BaconCipherV2(ClassicalCipher):
         return dictionary
 
 def main():
-    bc=BaconCipherV2(None,"ABC")
+    bc=BaconCipherV2(None,"HELLO")
     bc.encrypt()
     print(bc)
 
+    bcd = BaconCipherV2("0011100100010110101101110")
+    bcd.decrypt()
+    print(bcd)
 main()
