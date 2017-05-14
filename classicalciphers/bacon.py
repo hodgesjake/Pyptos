@@ -9,13 +9,21 @@ Jake Hodges
 from classicalciphers.classicalcipher import ClassicalCipher
 
 class BaconCipherV2(ClassicalCipher):
-    def __init__(self, encrypted_msg=None, decrypted_msg=None, alpha=None, key=[0,1], key_length=5):
-        self.key = key
+    def __init__(self, encrypted_msg=None, decrypted_msg=None, alpha=None, key="01", key_length=5):
+        self.key = "01"
         self.key_length = key_length
         super().__init__(encrypted_msg,decrypted_msg,alpha)
 
     def encrypt(self):
-        pass
+        e_msg=""
+        char_dict=self._create_dict()
+        for char in self.decrypted_msg:
+            e_msg+=char_dict[char]
+
+        self.encrypted_msg=e_msg
+
+
+
     def decrypt(self):
         pass
 
@@ -26,7 +34,7 @@ class BaconCipherV2(ClassicalCipher):
             bin_fix = self._bin_size(bin_str,self.key_length)
             bc_dict[self.alpha[i]]=bin_fix
 
-        print(bc_dict)
+        return bc_dict
 
     def _bin_size(self,bin_str,bin_size):
         bin_ret=bin_str
@@ -35,6 +43,9 @@ class BaconCipherV2(ClassicalCipher):
 
         return bin_ret
 
+    """
+    This could be used for encrypting with the original key
+    """
     def _replace_vals(self,dictionary):
         if self.key!=[0,1]:
             for char in self.alpha:
@@ -49,10 +60,8 @@ class BaconCipherV2(ClassicalCipher):
         return dictionary
 
 def main():
-    bc=BaconCipherV2()
-    bc._create_dict()
-    #bc._bin_to_str("111",10)
-
+    bc=BaconCipherV2(None,"ABC")
+    bc.encrypt()
     print(bc)
 
 main()
